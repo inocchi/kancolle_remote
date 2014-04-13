@@ -1,6 +1,9 @@
 KancolleRemote::Application.routes.draw do
   get "remote/nyuukyo"
 
+  post "packet/notify_post"
+  post "packet/notify_response"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

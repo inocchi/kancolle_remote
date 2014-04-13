@@ -1,1 +1,7 @@
-TODO:
+# install
+
+* ruby
+** libpcap: sudo apt-get install libpcap-dev
+* rails
+
+
