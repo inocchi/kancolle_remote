@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 class LogicMouse
+  extend LogicHelper
 end
 
 class <<  LogicMouse

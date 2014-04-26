@@ -1,0 +1,9 @@
+pid: tmp/pids/thin.pid
+log: log/thin.log
+servers: 2
+port: 3101
+daemonize: true
+environment: development
+#environment: production
+#user: rack
+#group: rack

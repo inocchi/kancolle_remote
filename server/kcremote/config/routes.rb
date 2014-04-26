@@ -1,5 +1,6 @@
 KancolleRemote::Application.routes.draw do
-  get "remote/nyuukyo"
+  get "bokou/show"
+  post "bokou/nyukyo"
 
   post "packet/notify_post"
   post "packet/notify_response"

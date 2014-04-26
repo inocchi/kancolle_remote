@@ -1,6 +1,12 @@
 # -*- encoding: utf-8 -*-
 
-module MousePos
-  NYUUKYO_X = 315
-  NYUUKYO_Y = 590
+# マウス座標
+module Mouse
+
+  # 母港
+  module Bokou
+    NYUKYO_X = 465
+    NYUKYO_Y = 555
+  end
+
 end

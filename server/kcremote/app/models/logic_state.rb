@@ -19,17 +19,17 @@ end
 
 class <<  LogicState
 
-  @state = State::NONE
+  @@state = State::NONE
 
   # stateをセット
   def set_state(state)
-    @state = state
-    logger.debug("set state=#{State::Name[@state]}")
+    @@state = state
+    logger.debug("set state=#{State::Name[@@state]}")
   end
 
   # stateを取得
   def get_state
-    @state
+    @@state
   end
 
   # APIのPOSTを通知

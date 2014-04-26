@@ -3,7 +3,7 @@
 require 'pcap'
 
 def send(method_name, text)
-  system("curl http://localhost:3000/packet/#{method_name} -d text=\"#{text}\"")
+  system("curl http://localhost:3102/packet/#{method_name} -d text=\"#{text}\"")
 end 
 
 # main
