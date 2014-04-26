@@ -6,14 +6,24 @@ end
 module State
   NONE = 0
   BOKOU = 1
-  ENSEI_RESULT = 2
-  NYUKYO = 3
+  HENSEI = 2
+  HOKYU = 3
+  KAISOU = 4
+  NYUKYO = 5
+  KOUSYO = 6
+  QUEST = 7
+  ENSEI_RESULT = 8
 
   Name = {
     State::NONE=> "none",
     State::BOKOU=> "母港",
-    State::ENSEI_RESULT=> "遠征結果",
+    State::HENSEI=> "編成",
+    State::HOKYU=> "補給",
+    State::KAISOU=> "改装",
     State::NYUKYO=> "入渠",
+    State::KOUSYO=> "工廠",
+    State::QUEST=> "任務",
+    State::ENSEI_RESULT=> "遠征結果",
   }
 end
 
@@ -30,15 +40,6 @@ class <<  LogicState
   # stateを取得
   def get_state
     @@state
-  end
-
-  # APIのPOSTを通知
-  def notify_post(str)
-    if str.index(KcApi::LOGIN_CHECK)
-      set_state(State::BOKOU)
-    elsif str.index(KcApi::NYUKYO_LIST)
-      set_state(State::NYUKYO)
-    end
   end
 
 end

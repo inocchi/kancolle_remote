@@ -1,9 +1,27 @@
 # -*- encoding: utf-8 -*-
 class LogicPacket
   extend LogicHelper
- 
-  @@response = {}  # key: api, value: response
-  @@cur_api = "" 
+
+  # @param  [String]  api :
+  # @param  [int]     x   :
+  # @param  [int]     y   :
+  def self.wait_response(api, x, y)
+    res = _get_res(api)
+    res.response = ""
+    res.save! 
+
+    LogicMouse.click(x, y)
+
+    res = nil
+    timeout(20) {
+      while true
+        res = LogicPacket.get_response(api)
+        break if res != ""
+        sleep(1)
+      end
+    } 
+    res
+  end
 
   # @param  [String]  api :
   def self.post(api)
@@ -11,11 +29,12 @@ class LogicPacket
     res.response = ""
     res.save!
   end
-
-  # @param  [String]  api :
-  def self.clear_response(api)
+ 
+  # @param  [String]  api
+  # @param  [String]  response :
+  def self.receive_response(api, response)
     res = _get_res(api)
-    res.response = ""
+    res.response = response
     res.save!
   end
 
@@ -28,14 +47,6 @@ class LogicPacket
     end
     res.response
   end
-
-  # @param  [String]  api
-  # @param  [String]  response :
-  def self.receive_response(api, response)
-    res = _get_res(api)
-    res.response = response
-    res.save!
-  end 
 
   # @param  [String]  api
   def self._get_res(api)

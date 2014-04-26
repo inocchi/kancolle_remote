@@ -1,0 +1,20 @@
+<table cellpadding="10">
+  <tr>
+    <td><%= button_to("母港", controller: "left_menu", action: "bokou")  %></td>
+    <% if LogicState.get_state != State::HENSEI %>
+      <td><%= button_to("編成", controller: "left_menu", action: "hensei")  %></td>
+    <% end %>
+    <% if LogicState.get_state != State::HOKYU %>
+      <td><%= button_to("補給", controller: "left_menu", action: "hokyu")  %></td>
+    <% end %>
+    <% if LogicState.get_state != State::KAISOU %> 
+      <td><%= button_to("改装", controller: "left_menu", action: "kaisou")  %></td>
+    <% end %>
+    <% if LogicState.get_state != State::NYUKYO %> 
+      <td><%= button_to("入渠", controller: "left_menu", action: "nyukyo")  %></td>
+    <% end %>
+    <% if LogicState.get_state != State::KOUSYO %> 
+      <td><%= button_to("工廠", controller: "left_menu", action: "kousyo")  %></td>
+    <% end %>
+  </tr>
+</table>

@@ -1,18 +1,17 @@
 # -*- encoding: utf-8 -*-
-class BokouController < ApplicationController
+class LeftMenuController < ApplicationController
 
-  # 
-  def show
-
-  end
-
-  def battle
-
+  # 母港
+  def bokou
+    LogicTransition.bokou(Mouse::LMenu::BOKOU_X, Mouse::LMenu::BOKOU_Y)
+    redirect_to controller: "bokou", action: "show"
+  rescue => e
+    error_log(e)
   end
 
   # 編成
   def hensei
-    LogicTransition.hensei(Mouse::Bokou::HENSEI_X, Mouse::Bokou::HENSEI_Y)
+    LogicTransition.hensei(Mouse::LMenu::HENSEI_X, Mouse::LMenu::HENSEI_Y)
     redirect_to controller: "hensei", action: "show"
   rescue => e
     error_log(e)
@@ -20,7 +19,7 @@ class BokouController < ApplicationController
  
   # 補給
   def hokyu
-    LogicTransition.hokyu(Mouse::Bokou::HOKYU_X, Mouse::Bokou::HOKYU_Y)
+    LogicTransition.hokyu(Mouse::LMenu::HOKYU_X, Mouse::LMenu::HOKYU_Y)
     redirect_to controller: "hokyu", action: "show"
   rescue => e
     error_log(e)
@@ -28,7 +27,7 @@ class BokouController < ApplicationController
   
   # 改装
   def kaisou
-    LogicTransition.kaisou(Mouse::Bokou::KAISOU_X, Mouse::Bokou::KAISOU_Y)
+    LogicTransition.kaisou(Mouse::LMenu::KAISOU_X, Mouse::LMenu::KAISOU_Y)
     redirect_to controller: "kaisou", action: "show"
   rescue => e
     error_log(e)   
@@ -36,7 +35,7 @@ class BokouController < ApplicationController
 
   # 入渠
   def nyukyo
-    LogicTransition.nyukyo(Mouse::Bokou::NYUKYO_X, Mouse::Bokou::NYUKYO_Y)
+    LogicTransition.nyukyo(Mouse::LMenu::NYUKYO_X, Mouse::LMenu::NYUKYO_Y)
     redirect_to controller: "nyukyo", action: "show"
   rescue => e
     error_log(e)
@@ -44,7 +43,7 @@ class BokouController < ApplicationController
 
   # 工廠
   def kousyo
-    LogicTransition.kousyo(Mouse::Bokou::KOUSYO_X, Mouse::Bokou::KOUSYO_Y)
+    LogicTransition.kousyo(Mouse::LMenu::KOUSYO_X, Mouse::LMenu::KOUSYO_Y)
     redirect_to controller: "kousyo", action: "show"
   rescue => e
     error_log(e)

@@ -1,9 +1,18 @@
 <h1>母港</h1>
 
+<table cellpadding="10">
+  <tr>
+    <td><%= button_to("出撃", action: "battle")  %></td>
+    <td><%= button_to("編成", action: "hensei")  %></td>
+    <td><%= button_to("補給", action: "hokyu")  %></td>
+    <td><%= button_to("改装", action: "kaisou")  %></td>
+    <td><%= button_to("入渠", action: "nyukyo")  %></td>
+    <td><%= button_to("工廠", action: "kousyo")  %></td>
+  </tr>
+</table> 
+
 燃料：
 弾薬：
 鋼鉄：
 ボーキ：
 
-
-<%= button_to("入渠", action: "nyukyo")  %>

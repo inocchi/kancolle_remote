@@ -1,6 +1,28 @@
 KancolleRemote::Application.routes.draw do
   get "bokou/show"
+  post "bokou/battle"
+  post "bokou/hensei"
+  post "bokou/hokyu"
+  post "bokou/kaisou"
   post "bokou/nyukyo"
+  post "bokou/kousyo"
+
+  get "hensei/show"
+
+  get "hokyu/show"
+
+  get "kaisou/show"
+
+  get "nyukyo/show"
+
+  get "kousyo/show"
+
+  post "left_menu/bokou"
+  post "left_menu/hensei"
+  post "left_menu/hokyu"
+  post "left_menu/kaisou"
+  post "left_menu/nyukyo"
+  post "left_menu/kousyo"
 
   post "packet/notify_post"
   post "packet/notify_response"
