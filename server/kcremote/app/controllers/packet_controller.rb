@@ -1,29 +1,25 @@
 # -*- encoding: utf-8 -*-
+
+# packet_capture/capture.rbから呼ばれる
 class PacketController < ApplicationController
 
-  def nyuukyo
-    LogicMouse.click(MousePos::NYUKYO_X, MousePos::NYUKYO_Y)
-  end
-
   def notify_post
-    str = params[:text]
-    LogicState.notify_post(str)
+    api = params[:api]
+    LogicPacket.post(api)
     render json: { msg: "OK! Post" }
   rescue => e
-    logger.error("msg=#{e.message}, backtrace=#{e.backtrace}")
+    error_log(e)
   end
 
   def notify_response
-    str = params[:text]
-    str = ""
-    case LogicState.get_state
-    when State::NYUKYO
-      logger.info("入渠：#{str}")
-    else
-      logger.info("etc: #{str}")
+    api = params[:api]
+    res = params[:res]
+    LogicPacket.receive_response(api, res)
+    if api == KcApi::PORT
+      LogicDeck.update
     end
     render json: { msg: "OK! Res" }
   rescue => e
-    logger.error("msg=#{e.message}, backtrace=#{e.backtrace}")
+    error_log(e)
   end
 end
