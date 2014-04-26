@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
 
 require 'pcap'
+require 'json'
 
-def send(method_name, text)
-  system("curl http://localhost:3102/packet/#{method_name} -d text=\"#{text}\"")
+def send(method_name, hash)
+  system("curl -H \"Accept: application/json\" -H \"Content-type: application/json\" -X POST -d '#{hash.to_json}' http://localhost:3102/packet/#{method_name}")
 end 
 
 # main
@@ -24,7 +25,7 @@ httpdump.each_packet {|pkt|
       api = $1
       svdata = ""
       p "notify_post: #{api}"
-      send("notify_post", api)
+      send("notify_post", {api: api})
     end
   when HTTP_RESPONSE
     if data
@@ -32,15 +33,14 @@ httpdump.each_packet {|pkt|
         tmp = pkt.tcp_data
         tmp =~ /^svdata=({.*)$/
         svdata = $1
-
       else
         svdata += data unless svdata.nil? # 音声データを受信したときnilになってる
       end
     else
       if pkt.tcp_fin? && !svdata.nil? && svdata != ""
-        send("notify_response", svdata)
+        send("notify_response", {api: api, res: svdata.force_encoding("UTF-8")})
 #        p "res=#{svdata}" unless api.index("ship")
-        svdata = ""
+        api = svdata = ""
       end
 
     end

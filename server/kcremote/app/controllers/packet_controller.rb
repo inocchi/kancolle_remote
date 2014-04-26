@@ -4,16 +4,17 @@
 class PacketController < ApplicationController
 
   def notify_post
-    str = params[:text]
-    LogicPacket.post(str)
+    api = params[:api]
+    LogicPacket.post(api)
     render json: { msg: "OK! Post" }
   rescue => e
     error_log(e)
   end
 
   def notify_response
-    str = params[:text]
-    LogicPacket.receive_response(str)
+    api = params[:api]
+    res = params[:res]
+    LogicPacket.receive_response(api, res)
     render json: { msg: "OK! Res" }
   rescue => e
     error_log(e)

@@ -8,8 +8,7 @@ class BokouController < ApplicationController
 
   # 入渠
   def nyukyo
-=begin
-    wait_api = KcApi::USE_ITEM
+    wait_api = KcApi::NYUKYO_LIST
     LogicPacket.clear_response(wait_api)
     LogicMouse.click(Mouse::Bokou::NYUKYO_X, Mouse::Bokou::NYUKYO_Y)
     res = nil
@@ -20,7 +19,6 @@ class BokouController < ApplicationController
         sleep(1)
       end
     }
-=end
     render json: {msg: "NYUKYO OK!"}
   rescue => e
     error_log(e) 
