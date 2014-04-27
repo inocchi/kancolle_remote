@@ -3,7 +3,16 @@ class BokouController < ApplicationController
 
   # 
   def show
-
+    api_data = LogicPacket.get_response(KcApi::PORT)
+    @material = LogicPacket.get_material(api_data)
+    @response = {
+      api_material: api_data["api_material"],
+      api_deck_port: api_data["api_deck_port"],
+      api_ndock: api_data["api_ndock"],
+      api_ship: api_data["api_ship"].first,
+      api_basic: api_data["api_basic"],
+      api_log: api_data["api_log"],
+    }
   end
 
   def battle

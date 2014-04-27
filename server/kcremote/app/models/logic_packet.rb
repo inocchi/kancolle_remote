@@ -15,7 +15,7 @@ class LogicPacket
     res = nil
     timeout(20) {
       while true
-        res = LogicPacket.get_response(api)
+        res = LogicPacket.get_response(api, false)
         break if res != ""
         sleep(1)
       end
@@ -39,13 +39,19 @@ class LogicPacket
   end
 
   # @param  [String]  api
-  # @return [String]  response
-  def self.get_response(api)
+  # @param  [bool]    is_hash : true=戻り値をハッシュにする, false=戻り値をstringにする
+  # @return [Hash / String]  response
+  def self.get_response(api, is_hash=true)
     res = 
     Response.uncached do
       _get_res(api)
     end
-    res.response
+    ret = res.response
+    if is_hash
+      ret = JSON.parse(ret)
+      ret = ret["api_data"] if ret["api_result"] == 1
+    end
+    ret
   end
 
   # @param  [String]  api
@@ -55,5 +61,36 @@ class LogicPacket
     res
   end
 
+  # 資材
+  def self.get_material(api_data)
+    material = api_data["api_material"]
+    {
+      fuel: _get_material_value(material, 1),
+      bullet: _get_material_value(material, 2),
+      iron: _get_material_value(material, 3),
+      bauxite: _get_material_value(material, 4),
+    }
+  end
+
+  def self._get_material_value(material, api_id)
+    m = material.find{ |x| x["api_id"] == api_id }
+    m["api_value"]
+  end
+
+  # 艦隊一覧
+  def self.get_ships(api_data)
+    ships = []
+    api_data["api_ship"].each do |s|
+      ships << {
+        id: s["api_id"],
+        name: LogicMstData.get_ship_name(s["api_ship_id"]),
+        lv: s["api_lv"],
+        exp: s["api_exp"].to_s,
+        hp: s["api_nowhp"].to_s + " / " + s["api_maxhp"].to_s,
+        sort_no: s["api_sortno"],
+      }
+    end
+    ships
+  end
 end
 

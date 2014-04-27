@@ -38,7 +38,7 @@ httpdump.each_packet {|pkt|
       end
     else
       if pkt.tcp_fin? && !svdata.nil? && svdata != ""
-        send("notify_response", {api: api, res: svdata.force_encoding("UTF-8")})
+        send("notify_response", {api: api, res: svdata[0..svdata.rindex('}')].force_encoding("UTF-8")}) # chunkedのデータの場合最後に0が入ってるから削除する
 #        p "res=#{svdata}" unless api.index("ship")
         api = svdata = ""
       end

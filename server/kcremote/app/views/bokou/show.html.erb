@@ -11,8 +11,12 @@
   </tr>
 </table> 
 
-燃料：
-弾薬：
-鋼鉄：
-ボーキ：
+燃料：<%= @material[:fuel] %><br>
+弾薬：<%= @material[:bullet] %><br>
+鋼鉄：<%= @material[:iron] %><br>
+ボーキ：<%= @material[:bauxite] %><br>
 
+<p>
+<% @response.each do |k, v| %>
+  <%= k %> = <%= v %><p>
+<% end %>
