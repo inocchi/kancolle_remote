@@ -15,6 +15,9 @@ class PacketController < ApplicationController
     api = params[:api]
     res = params[:res]
     LogicPacket.receive_response(api, res)
+    if api == KcApi::PORT
+      LogicDeck.update
+    end
     render json: { msg: "OK! Res" }
   rescue => e
     error_log(e)

@@ -77,20 +77,5 @@ class LogicPacket
     m["api_value"]
   end
 
-  # 艦隊一覧
-  def self.get_ships(api_data)
-    ships = []
-    api_data["api_ship"].each do |s|
-      ships << {
-        id: s["api_id"],
-        name: LogicMstData.get_ship_name(s["api_ship_id"]),
-        lv: s["api_lv"],
-        exp: s["api_exp"].to_s,
-        hp: s["api_nowhp"].to_s + " / " + s["api_maxhp"].to_s,
-        sort_no: s["api_sortno"],
-      }
-    end
-    ships
-  end
 end
 

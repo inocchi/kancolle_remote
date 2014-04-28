@@ -3,8 +3,9 @@ class HenseiController < ApplicationController
 
   # 
   def show
-    api_data = LogicPacket.get_response(KcApi::PORT)
-    @ships= LogicPacket.get_ships(api_data)
+    LogicDeck.update  # TODO: delete(debug code)
+    @ships= LogicDeck.get_ships
+    @deck = LogicDeck.get_deck(1)
   end
 
 end

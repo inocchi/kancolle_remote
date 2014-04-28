@@ -9,6 +9,7 @@ def send(method_name, hash)
   p "#{str.count('{')},#{str.count('}')},#{str.count('[')},#{str.count(']')}"
   p "1: #{str[0..100]}"
   p "2: #{str[(str.length-100)..str.length]}"
+
   system("curl -H \"Accept: application/json\" -H \"Content-type: application/json\" -X POST -d '#{hash.to_json}' http://localhost:3102/packet/#{method_name}")
 end 
 

@@ -2,18 +2,6 @@
 
 <%= render 'shared/left_menu' %>
 
-<table border="1" cellpadding="5">
-  <tr>
-    <% @ships.first.keys.each do |k| %>
-      <td><%= k.to_s %></td>
-    <% end %>
-  </tr>
-  <% @ships.each do |ship| %>
-    <tr>
-      <% ship.values.each do |v| %>
-        <td><%= v %></td>
-      <% end %> 
-    </tr>
-  <% end %>
-</table> 
+<%= render partial: "shared/ship", locals: {ships: @deck} %>
+<!-- %= render partial: "shared/ship", locals: {ships: @ships} % -->
 
