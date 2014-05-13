@@ -7,8 +7,14 @@
 <table cellpadding="10">
   <% 1.upto(8) do |i| %>
     <tr>
-      <td>mission<%= i + @area * 8  %></td>
-      <td><%= button_to("選択", { action: "select_mission", index: i }) %></td>
+      <% mission_id = (@area - 1) * 8 + i %>
+      <% mission_name = LogicMstData.get_mission_name(mission_id) %>
+      <td><%= mission_id  %> : <%= mission_name %></td>
+      <td>
+        <% if mission_name %>
+          <%= button_to("選択", { action: "select_mission", index: i, area: @area, mission_id: mission_id }) %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>

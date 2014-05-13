@@ -41,7 +41,7 @@ class <<  LogicMstData
 
   def get_mission_name(mission_id)
     mission = @@mst_missions.find{ |x| x[:id] == mission_id }
-    mission.nil? ? "mission#{mission_id}" : mission[:name]
+    mission.nil? ? nil : mission[:name]
   end 
 
   def get_missions

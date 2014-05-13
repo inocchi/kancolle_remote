@@ -1,0 +1,17 @@
+<h1>遠征</h1>
+
+<%= render 'shared/left_menu' %>
+
+<%= @mission_id %> : <%= LogicMstData.get_mission_name(@mission_id) %>
+
+<table cellpadding="10">
+  <tr>
+    <td>
+      <%= button_to("決定", { action: "decide_mission", area: @area, mission_id: @mission_id }) %>
+    </td>
+    <td>
+      <%= button_to("キャンセル", { action: "cancel_mission", area: @area }) %>
+    </td>
+  </tr>
+</table>
+

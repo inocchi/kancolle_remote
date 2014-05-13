@@ -19,6 +19,10 @@ KancolleRemote::Application.routes.draw do
   get "ensei/show"
   post "ensei/change_area"
   post "ensei/select_mission"
+  get "ensei/confirm_mission"
+  post "ensei/decide_mission"
+  post "ensei/cancel_mission"
+  get "ensei/select_deck"
 
   get "hensei/show"
 
