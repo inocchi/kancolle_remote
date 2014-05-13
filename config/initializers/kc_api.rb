@@ -2,6 +2,7 @@
 
 module KcApi
   WAIT_BOKOU  = "/kcsapi/api_port/port"
+  WAIT_ENSEI  = "/kcsapi/api_get_member/mission"
   WAIT_NYUKYO = "/kcsapi/api_get_member/ndock"
 
   PORT  = "/kcsapi/api_port/port"

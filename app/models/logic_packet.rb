@@ -11,7 +11,7 @@ class LogicPacket
     res.save! 
 
     LogicMouse.click(x, y)
-
+=begin
     res = nil
     timeout(20) {
       while true
@@ -21,6 +21,7 @@ class LogicPacket
       end
     } 
     res
+=end
   end
 
   # @param  [String]  api :
@@ -47,9 +48,13 @@ class LogicPacket
       _get_res(api)
     end
     ret = res.response
-    if is_hash
-      ret = JSON.parse(ret)
-      ret = ret["api_data"] if ret["api_result"] == 1
+    begin
+      if is_hash
+        ret = JSON.parse(ret)
+        ret = ret["api_data"] if ret["api_result"] == 1
+      end
+    rescue => e
+      ret = {}
     end
     ret
   end
@@ -73,6 +78,7 @@ class LogicPacket
   end
 
   def self._get_material_value(material, api_id)
+    return nil if material.nil?
     m = material.find{ |x| x["api_id"] == api_id }
     m["api_value"]
   end

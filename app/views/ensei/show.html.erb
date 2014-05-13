@@ -1,0 +1,23 @@
+<h1>遠征</h1>
+
+<%= render 'shared/left_menu' %>
+
+<%= @response %>
+ 
+<table cellpadding="10">
+  <% 1.upto(8) do |i| %>
+    <tr>
+      <td>mission<%= i + @area * 8  %></td>
+      <td><%= button_to("選択", { action: "select_mission", index: i }) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<table cellpadding="10">
+  <tr>
+    <% 1.upto(5) do |i|  %>
+      <td><%= button_to("Area#{i}", { action: "change_area", area: i }, disabled: i==@area) %></td>
+    <% end %>
+  </tr>
+</table> 
+

@@ -41,4 +41,32 @@ module Mouse
     QUEST_Y   = 235
   end
 
+  # 出撃TOP
+  module BattleTop
+    BATTLE_X    = 580
+    BATTLE_Y    = 410
+    PRACTICE_X  = 795
+    PRACTICE_Y  = 410
+    ENSEI_X     = 1015
+    ENSEI_Y     = 410
+  end
+
+  # 遠征
+  module Ensei
+    MISSION_1_X = 650
+    MISSION_1_Y = 360
+    MISSION_Y_OFFSET  = 30
+    MISSION_OK_X  = 1025
+    MISSION_OK_Y  = 630
+
+    AREA_1_X = 490
+    AREA_1_Y = 625
+    AREA_X_OFFSET = 65
+
+    DECK_2_X  = 740
+    DECK_2_Y  = 305
+    DECK_X_OFFSET = 30
+    DECK_OK_X = 970
+    DECK_OK_Y = 635
+  end
 end

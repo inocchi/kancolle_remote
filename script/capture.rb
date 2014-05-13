@@ -45,7 +45,7 @@ httpdump.each_packet {|pkt|
     end
     p "total=#{svdata.length}, len=#{pkt.tcp_data_len}, ack=#{pkt.tcp_ack}, seq=#{pkt.tcp_seq}, preq=#{pkt.tcp_seq - pkt.tcp_data_len}, #{pkt.tcp_flags_s}" unless svdata.nil?
     if pkt.tcp_fin? && !svdata.nil? && svdata != ""
-      send("notify_response", {api: api, res: svdata[0..svdata.rindex('}')]}) # chunkedのデータの場合最後に0が入ってるから削除する
+      send("notify_response", {api: api, res: svdata[0..svdata.rindex('}')].force_encoding("UTF-8")}) # chunkedのデータの場合最後に0が入ってるから削除する
 #        p "res=#{svdata}" unless api.index("ship")
       api = svdata = ""
     end

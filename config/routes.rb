@@ -7,6 +7,19 @@ KancolleRemote::Application.routes.draw do
   post "bokou/nyukyo"
   post "bokou/kousyo"
 
+  get "battle_top/show"
+  post "battle_top/battle"
+  post "battle_top/practice"
+  post "battle_top/ensei"
+
+  get "battle/show"
+
+  get "practice/show"
+
+  get "ensei/show"
+  post "ensei/change_area"
+  post "ensei/select_mission"
+
   get "hensei/show"
 
   get "hokyu/show"

@@ -35,4 +35,9 @@ class <<  LogicTransition
     LogicState.set_state(State::KOUSYO) 
   end
 
+  def ensei(x, y)
+    LogicPacket.wait_response(KcApi::WAIT_ENSEI, x, y)
+#    LogicState.set_state(State::ENSEI)
+  end
+
 end
