@@ -8,7 +8,7 @@
   <% 1.upto(8) do |i| %>
     <tr>
       <% mission_id = (@area - 1) * 8 + i %>
-      <% mission_name = LogicMstData.get_mission_name(mission_id) %>
+      <% mission_name = MstMission.get_name(mission_id) %>
       <td><%= mission_id  %> : <%= mission_name %></td>
       <td>
         <% if mission_name %>

@@ -52,7 +52,7 @@ logger.warn( "2: #{LogicMstData.get_ships}" )
   def _get_ship_info(ship)
     {
       #id: ship["api_id"],
-      name: LogicMstData.get_ship_name(ship["api_ship_id"]),
+      name: MstShip.get_name(ship["api_ship_id"]),
       lv: ship["api_lv"],
       exp: "#{ship["api_exp"][2]}% あと#{ship["api_exp"][1]}",
       hp: ship["api_nowhp"].to_s + " / " + ship["api_maxhp"].to_s,
